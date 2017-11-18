@@ -93,8 +93,8 @@ int main (int argc, const char *argv[]) {
 	matrix *m = find_relations (opt);
 	print_matrix(m);
 
-	//solution_ui *soln = solve_all_ui (m, opt, NULL);
-	solution_ui *soln = solve_ui (m, mpz_get_ui(q) - 1, 0);
+	solution_ui *soln = solve_all_ui (m, opt, NULL);
+	//solution_ui *soln = solve_ui (m, mpz_get_ui(q) - 1, 0);
 
 	print_solution_ui (soln);
 	solution *sol = convert_up (soln);
