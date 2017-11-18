@@ -1,3 +1,4 @@
+#include <pthread.h>
 #include "relation.h"
 #include "core.h"
 
@@ -34,8 +35,22 @@ matrix *new_matrix (int nrows) {
 	return m;
 }
 
+bool is_matrix_full (matrix *m) {
+	return m->next_slot == m->nrows;
+}
+
+pthread_mutex_t MAT_MUTEX = PTHREAD_MUTEX_INITIALIZER;
+
+// returns whether the matrix is full
 bool add_row (matrix *m, relation *r) {
+	pthread_mutex_lock (&MAT_MUTEX);
+	if (m->next_slot == m->nrows) {
+		pthread_mutex_unlock(&MAT_MUTEX);
+		return true;
+	}
 	m->rows[m->next_slot] = r;
 	m->next_slot++;
-	return m->next_slot == m->nrows;
+	bool matrix_full = is_matrix_full(m);
+	pthread_mutex_unlock (&MAT_MUTEX);
+	return matrix_full;
 }

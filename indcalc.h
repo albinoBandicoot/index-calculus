@@ -5,6 +5,13 @@
 #include "core.h"
 #include "tdiv.h"
 
+typedef struct {
+	ic_opts *opt;
+	matrix *m;
+	int thread_index;
+} thread_data_t;
+
 matrix *find_relations (ic_opts *opt);
+bool verify_solution (mpz_t x, ic_opts *opt) ;
 
 #endif

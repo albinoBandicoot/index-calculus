@@ -3,10 +3,9 @@
 
 #include <gmp.h>
 #include <stdint.h>
+#include <stdbool.h>
 #include <string.h>
 #include "core.h"
-
-#define bool unsigned char
 
 typedef struct {
 	uint8_t *exp;
@@ -24,6 +23,7 @@ relation *new_relation (ic_opts*);
 void clear_relation (relation *r);
 void print_relation (relation *r);
 void print_matrix (matrix *m);
+bool is_matrix_full (matrix *m);
 
 matrix *new_matrix (int nrows);
 bool add_row (matrix *m, relation *r);

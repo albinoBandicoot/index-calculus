@@ -1,11 +1,12 @@
 #include "core.h"
 
-ic_opts *init (mpz_t g, mpz_t q, mpz_t h, uint32_t fbb) {
+ic_opts *init (mpz_t g, mpz_t q, mpz_t h, uint32_t fbb, uint32_t nthreads) {
 	ic_opts *opt = NEW(ic_opts);
 	mpz_inits (opt->in.g, opt->in.q, opt->in.h, NULL);
 	mpz_set (opt->in.g, g);
 	mpz_set (opt->in.q, q);
 	mpz_set (opt->in.h, h);
+	opt->nthreads = nthreads;
 	generate_fb (opt, fbb);
 	return opt;
 }
