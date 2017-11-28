@@ -17,6 +17,8 @@ typedef struct {
 typedef struct {
 	instance in;
 	uint32_t *fb;
+	uint32_t *fblogs;
+	uint32_t nbits;
 	uint32_t fblen;
 	uint32_t nthreads;
 } ic_opts;

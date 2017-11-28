@@ -7,6 +7,7 @@ ic_opts *init (mpz_t g, mpz_t q, mpz_t h, uint32_t fbb, uint32_t nthreads) {
 	mpz_set (opt->in.q, q);
 	mpz_set (opt->in.h, h);
 	opt->nthreads = nthreads;
+	opt->nbits = mpz_sizeinbase (q, 2);
 	generate_fb (opt, fbb);
 	return opt;
 }
@@ -51,6 +52,8 @@ void generate_fb (ic_opts *opt, uint32_t fbb) {
 	era_sieve (erasieve_vals, fbb);
 	extract (opt, erasieve_vals, fbb);
 	free (erasieve_vals);
+	opt->fblogs = (uint32_t *) malloc (4*opt->fblen);
+	for (int i=0; i < opt->fblen; i++) {
+		opt->fblogs[i] = (uint32_t) (log(opt->fb[i]) + 0.5);
+	}
 }
-
-

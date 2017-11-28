@@ -11,7 +11,7 @@ typedef struct {
 	int thread_index;
 } thread_data_t;
 
-matrix *find_relations (ic_opts *opt);
+matrix *find_relations (ic_opts *opt, int target);
 bool verify_solution (mpz_t x, ic_opts *opt) ;
 
 #endif
